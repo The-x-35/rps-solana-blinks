@@ -157,7 +157,7 @@ export const POST = async (req: Request) => {
         else if (random < 9) outcome = "win";
         else outcome = "draw";
       }
-      outcome = "win"
+      // outcome = "win"
 
       
     
