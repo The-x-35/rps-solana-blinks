@@ -168,7 +168,7 @@ export const POST = async (req: Request) => {
         await setDoc(doc(firestore, "players", account.toString()), { amount: (Number(amount)*2) });
         cpuChoice = choice === "R" ? "S" : choice === "P" ? "R" : "P"; // Win scenario
       }
-      if (outcome === "lose") {
+      else if (outcome === "lose") {
         cpuChoice = choice === "R" ? "P" : choice === "P" ? "S" : "R"; // Lose scenario
       } else {
         cpuChoice = choice; // Draw scenario
