@@ -157,7 +157,7 @@ export const POST = async (req: Request) => {
         else if (random < 9) outcome = "win";
         else outcome = "draw";
       }
-      // outcome = "lose"
+      outcome = "win"
 
       
     
@@ -183,7 +183,7 @@ export const POST = async (req: Request) => {
         winAmount = Number(amount) * 2;
         description = `Congratulations! You chose ${formatChoice(choice)} and the opponent chose ${formatChoice(cpuChoice)}. You won ${winAmount} SOL! Claim your prize by clicking the button below now.`;
       }
-     if (outcome === "lose") {
+     else if (outcome === "lose") {
         if (choice === "R") image = "https://raw.githubusercontent.com/The-x-35/rps-solana-blinks/refs/heads/main/public/RL.png";
         else if (choice === "P") image = "https://raw.githubusercontent.com/The-x-35/rps-solana-blinks/refs/heads/main/public/PL.png";
         else if (choice === "S") image = "https://raw.githubusercontent.com/The-x-35/rps-solana-blinks/refs/heads/main/public/SL.png";
