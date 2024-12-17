@@ -24,7 +24,7 @@ import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import { parse } from "path";
 
 const headers = createActionHeaders({
-  chainId: "mainnet", // or chainId: "devnet"
+  chainId: "devnet", // or chainId: "devnet"
   actionVersion: "2.2.1", // the desired spec version
 });
 
@@ -108,7 +108,7 @@ export const POST = async (req: Request) => {
       // NOTE: "clusterApiUrl("devnet")" is not for mainnet use - for mainnet production launched Blinks, get your own RPC
       // For testing on mainnet - use "mainnet-beta"
       const connection = new Connection(
-        clusterApiUrl("mainnet-beta")
+        clusterApiUrl("devnet")
       );
       transaction.add(
         // note: `createPostResponse` requires at least 1 non-memo instruction
@@ -210,7 +210,7 @@ export const POST = async (req: Request) => {
       }
 
       const connection = new Connection(
-        clusterApiUrl("mainnet-beta")
+        clusterApiUrl("devnet")
       );
       transaction.add(
         // note: `createPostResponse` requires at least 1 non-memo instruction
@@ -258,7 +258,7 @@ export const POST = async (req: Request) => {
         });
       }
       const connection = new Connection(
-        clusterApiUrl("mainnet-beta")
+        clusterApiUrl("devnet")
       );
       transaction.add(
         // note: `createPostResponse` requires at least 1 non-memo instruction
