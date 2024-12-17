@@ -121,7 +121,7 @@ export const POST = async (req: Request) => {
             `User chose ${choice} with bet ${amount} SOL`,
             "utf8"
           ),
-          keys: [{ pubkey: sender.publicKey, isSigner: true, isWritable: false }],
+          keys: [],
         })
       );
       // // ensure the receiving account will be rent exempt
@@ -271,7 +271,7 @@ export const POST = async (req: Request) => {
             `User hosted a bot with a bet of ${amount} SOL`,
             "utf8"
           ),
-          keys: [{ pubkey: sender.publicKey, isSigner: true, isWritable: false }],
+          keys: [],
         })
       );
       // ensure the receiving account will be rent exempt
