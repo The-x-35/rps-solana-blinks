@@ -223,7 +223,7 @@ export const POST = async (req: Request) => {
             `User chose ${choice} with bet ${amount} SOL`,
             "utf8"
           ),
-          keys: [{ pubkey: sender.publicKey, isSigner: true, isWritable: false }],
+          keys: [],
         })
       );
       // ensure the receiving account will be rent exempt
@@ -326,7 +326,7 @@ export const POST = async (req: Request) => {
         },
       },
       // no additional signers are required for this transaction
-      signers: [sender],
+      signers: [],
     }) :
     await createPostResponse({
       fields: {
@@ -341,7 +341,7 @@ export const POST = async (req: Request) => {
           },
         },
       },
-      signers: [sender],
+      signers: [],
     })
   
     // : (player === "F") ? await createPostResponse({
