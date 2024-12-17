@@ -124,13 +124,13 @@ export const POST = async (req: Request) => {
           keys: [{ pubkey: sender.publicKey, isSigner: true, isWritable: false }],
         })
       );
-      // ensure the receiving account will be rent exempt
-      const minimumBalance = await connection.getMinimumBalanceForRentExemption(
-        0, // note: simple accounts that just store native SOL have `0` bytes of data
-      );
-      if (Number(amount) * LAMPORTS_PER_SOL < minimumBalance) {
-        throw `account may not be rent exempt.`;
-      }
+      // // ensure the receiving account will be rent exempt
+      // const minimumBalance = await connection.getMinimumBalanceForRentExemption(
+      //   0, // note: simple accounts that just store native SOL have `0` bytes of data
+      // );
+      // if (Number(amount) * LAMPORTS_PER_SOL < minimumBalance) {
+      //   throw `account may not be rent exempt.`;
+      // }
       transaction.add(SystemProgram.transfer({
         fromPubkey: account,
         toPubkey: sender.publicKey,
