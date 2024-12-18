@@ -83,23 +83,23 @@ export const POST = async (req: Request) => {
         headers, //Must include CORS HEADERS
       });
     }
-    let p = await getDoc(doc(firestore, "players", account.toString()));
-    let amountDb = 0;
-    if (p.exists()) amountDb = Number(p.data().amount);
-    else {
-      return new Response('Player not found in database', {
-        status: 400,
-        headers, //Must include CORS HEADERS
-      });
-    }
-   amountDb = parseFloat(amountDb.toFixed(4));
-    if (amountDb != Number(amount)) {
-      return new Response('Amount did not match DB.', {
-        status: 400,
-        headers, //Must include CORS HEADERS
-      });
-    }
-    await deleteDoc(doc(firestore, "players", account?.toString()));
+    // let p = await getDoc(doc(firestore, "players", account.toString()));
+    // let amountDb = 0;
+    // if (p.exists()) amountDb = Number(p.data().amount);
+    // else {
+    //   return new Response('Player not found in database', {
+    //     status: 400,
+    //     headers, //Must include CORS HEADERS
+    //   });
+    // }
+  //  amountDb = parseFloat(amountDb.toFixed(4));
+  //   if (amountDb != Number(amount)) {
+  //     return new Response('Amount did not match DB.', {
+  //       status: 400,
+  //       headers, //Must include CORS HEADERS
+  //     });
+  //   }
+  //   await deleteDoc(doc(firestore, "players", account?.toString()));
     // Solana Blockchain Cluster (Set Mainnet "mainnet-beta" or Devnet "devnet")
     // If your RPC not present, it will use default devnet RPC provided to us via web3.js "clusterApiUrl("devnet")"
     // NOTE: "clusterApiUrl("devnet")" is not for mainnet use - for mainnet production launched Blinks, get your own RPC
