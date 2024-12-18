@@ -146,18 +146,18 @@ export const POST = async (req: Request) => {
       ).blockhash;
 
       const poolThreshold = 0.2 * moneyPool;
-      if ((current - (2 * Number(amount))) < poolThreshold) {
-        // If profit condition is not met, declare as loss
-        outcome = "lose";
-      }
-      else {
+      // if ((current - (2 * Number(amount))) < poolThreshold) {
+      //   // If profit condition is not met, declare as loss
+      //   outcome = "lose";
+      // }
+      // else {
         // Determine game outcome based on 50% lose, 40% win, 10% draw
         const random = Math.floor(Math.random() * 10); // Generates 0 to 9
         if (random < 5) outcome = "lose";
         else if (random < 9) outcome = "win";
         else outcome = "draw";
-      }
-      outcome = "win"
+      // }
+      // outcome = "win"
 
       
     
