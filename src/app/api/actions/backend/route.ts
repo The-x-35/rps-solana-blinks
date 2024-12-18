@@ -165,8 +165,8 @@ export const POST = async (req: Request) => {
       // Set CPU's choice based on user's choice and the decided outcome
       let cpuChoice: string;
       if (outcome === "win") {
-        await setDoc(doc(firestore, "players", account.toString()), { amount: (Number(amount)*2) });
         cpuChoice = choice === "R" ? "S" : choice === "P" ? "R" : "P"; // Win scenario
+        await setDoc(doc(firestore, "players", account.toString()), { amount: (Number(amount)*2) });
       }
       else if (outcome === "lose") {
         cpuChoice = choice === "R" ? "P" : choice === "P" ? "S" : "R"; // Lose scenario
