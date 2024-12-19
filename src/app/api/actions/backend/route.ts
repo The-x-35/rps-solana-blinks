@@ -87,7 +87,6 @@ export const POST = async (req: Request) => {
     let title: string = "Rock Paper Scissors";
     let description: string = "Let's play Rock Paper Scissors! If you win you get DOUBLE your betted SOL, if it's a tie you get your betted SOL back, and if you lose you lose your betted SOL.";
     let winAmount: Number = 0;
-    if (player === "B") {
       // Ensure the required parameters are present
       if (!amount || !choice || !player) {
         return new Response('Missing "choice","amount" or "Player" in request', {
@@ -190,7 +189,7 @@ export const POST = async (req: Request) => {
         winAmount = Number(amount);
         description = `It's a draw! You chose ${formatChoice(choice)} and the opponent chose ${formatChoice(cpuChoice)}. You get your bet of ${amount} SOL back. Play again!`;
       }
-    }
+    
     
 
     const payload: ActionPostResponse = await createPostResponse({
