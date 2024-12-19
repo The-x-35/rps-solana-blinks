@@ -193,51 +193,66 @@ export const POST = async (req: Request) => {
     }
     
 
-    const payload: ActionPostResponse = (player === "B" && winAmount!=0) ? await createPostResponse({
-      fields: {
-        type: "transaction",
-        transaction,
-        message: `Placed with a bet of ${amount} SOL.`,
-        links: {
-          next: {
-            type: "inline",
-            action: {
-              type: "action",
-              title: `${title}`,
-              icon: new URL(`${image}`, new URL(req.url).origin).toString(),
-              description: `${description}`,
-              label: "Rock Paper Scissors",
-              "links": {
-                "actions": [
-                  {
-                    "label": "Claim Prize!", // button text
-                    "href": `/api/actions/result?amount=${winAmount}&outcome=${outcome}`,
-                    type: "transaction"
-                  }
-                ]
-              }
+    const payload: ActionPostResponse = await createPostResponse({
+        fields: {
+          type: "transaction",
+          transaction,
+          message: `Sorry you Lost, Play again!`,
+          links: {
+            next: {
+              type: "post",
+              href: `/api/actions/lost?amount=${amount}&outcome=${outcome}`,
+              
             },
           },
         },
-      },
-      // no additional signers are required for this transaction
-      signers: [],
-    }) :
-    await createPostResponse({
-      fields: {
-        type: "transaction",
-        transaction,
-        message: `Sorry you Lost, Play again!`,
-        links: {
-          next: {
-            type: "post",
-            href: `/api/actions/lost?amount=${amount}&outcome=${outcome}`,
+        signers: [],
+      });
+    // (player === "B" && winAmount!=0) ? await createPostResponse({
+    //   fields: {
+    //     type: "transaction",
+    //     transaction,
+    //     message: `Placed with a bet of ${amount} SOL.`,
+    //     links: {
+    //       next: {
+    //         type: "inline",
+    //         action: {
+    //           type: "action",
+    //           title: `${title}`,
+    //           icon: new URL(`${image}`, new URL(req.url).origin).toString(),
+    //           description: `${description}`,
+    //           label: "Rock Paper Scissors",
+    //           "links": {
+    //             "actions": [
+    //               {
+    //                 "label": "Claim Prize!", // button text
+    //                 "href": `/api/actions/result?amount=${winAmount}&outcome=${outcome}`,
+    //                 type: "transaction"
+    //               }
+    //             ]
+    //           }
+    //         },
+    //       },
+    //     },
+    //   },
+    //   // no additional signers are required for this transaction
+    //   signers: [],
+    // }) :
+    // await createPostResponse({
+    //   fields: {
+    //     type: "transaction",
+    //     transaction,
+    //     message: `Sorry you Lost, Play again!`,
+    //     links: {
+    //       next: {
+    //         type: "post",
+    //         href: `/api/actions/lost?amount=${amount}&outcome=${outcome}`,
             
-          },
-        },
-      },
-      signers: [],
-    });
+    //       },
+    //     },
+    //   },
+    //   signers: [],
+    // });
   
     return Response.json(payload, {
       headers,
