@@ -8,6 +8,7 @@ import {
 
 import {
   clusterApiUrl,
+  ComputeBudgetProgram,
   Connection,
   Keypair,
   LAMPORTS_PER_SOL,
@@ -103,9 +104,9 @@ export const POST = async (req: Request) => {
       );
       transaction.add(
         // note: `createPostResponse` requires at least 1 non-memo instruction
-        //   ComputeBudgetProgram.setComputeUnitPrice({
-        //     microLamports: 1000,
-        //   }),
+          ComputeBudgetProgram.setComputeUnitPrice({
+            microLamports: 1000,
+          }),
         new TransactionInstruction({
           programId: new PublicKey(MEMO_PROGRAM_ID),
           data: Buffer.from(
@@ -122,11 +123,11 @@ export const POST = async (req: Request) => {
       // if (Number(amount) * LAMPORTS_PER_SOL < minimumBalance) {
       //   throw `account may not be rent exempt.`;
       // }
-      transaction.add(SystemProgram.transfer({
-        fromPubkey: account,
-        toPubkey: sender.publicKey,
-        lamports: Number(amount) * LAMPORTS_PER_SOL,
-      }));
+      // transaction.add(SystemProgram.transfer({
+      //   fromPubkey: account,
+      //   toPubkey: sender.publicKey,
+      //   lamports: Number(amount) * LAMPORTS_PER_SOL,
+      // }));
 
       // set the end user as the fee payer
       transaction.feePayer = account;
