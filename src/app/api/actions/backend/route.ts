@@ -198,16 +198,16 @@ export const POST = async (req: Request) => {
           type: "transaction",
           transaction,
           message: `Sorry you Lost, Play again!`,
-          links: {
-            next: {
-              type: "post",
-              href: `/api/actions/lost?amount=${amount}&outcome=${outcome}`,
-              
-            },
-          },
         },
         signers: [],
       });
+      //links: {
+      //   next: {
+      //     type: "post",
+      //     href: `/api/actions/lost?amount=${amount}&outcome=${outcome}`,
+          
+      //   },
+      // },
     // (player === "B" && winAmount!=0) ? await createPostResponse({
     //   fields: {
     //     type: "transaction",
